@@ -207,7 +207,7 @@ bindsym $mod+l exec i3lock-fancy-rapid 7 4
 # Rofi pass
 bindsym $mod+p exec --no-startup-id passmenu
 # Rofi pass otp
-bindsym $mod+o exec --no-startup-id sel=$(find -type f -name '*gpg' -printf '%f\n' | rofi -dmenu) && pass otp "otp/${sel%".gpg"}"
+bindsym $mod+o exec --no-startup-id otpmenu
 
 # Backlight control
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 30 -time 250 -inc 4
