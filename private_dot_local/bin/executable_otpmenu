@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sel=$(find -type f -name '*gpg' -printf '%f\n' | rofi -dmenu) && pass otp "otp/${sel%".gpg"}"
+
