@@ -183,6 +183,7 @@ bar {
         font pango:Hack, Font Awesome 5 Free 11
         position bottom
         status_command i3status-rs ~/.config/i3/i3status-rs.toml
+        # Shameless copy from i3status-rs examples`
         colors {
                 separator #666666
                 statusline #dddddd
