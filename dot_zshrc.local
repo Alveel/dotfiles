@@ -1,0 +1,19 @@
+# Start ssh-agent
+if [ -n "$DISPLAY" ];
+then
+    eval $(keychain --eval id_ed25519 --agents ssh,gpg)
+else
+    eval $(keychain --eval id_ed25519 --agents ssh,gpg --noask)
+fi
+
+# Gnome keyring
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
+
+# Pyenv
+export PYENV_ROOT=$HOME/.local/opt/pyenv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
