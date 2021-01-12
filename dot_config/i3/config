@@ -212,7 +212,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 30 -time 250 -i
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -fps 30 -time 250 -dec 4
 # Something something with rofi
 
-# TODO: xautolock
+# Screen locker
 exec --no-startup-id screensaver
 
 # Bluetooth Manager tray icon/applet
