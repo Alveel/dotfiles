@@ -6,7 +6,7 @@ set -e
 dim_time="${dim_time-180}"
 lock_time="${lock_time-120}" # Lock after dim+lock
 min_brightness="${min_brightness-10}"
-fade_time="${fade_time-10000}"
+fade_time="${fade_time-1200}"
 fade_steps="${fade_steps-30}"
 
 get_brightness() {
