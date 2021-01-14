@@ -198,6 +198,19 @@ bar {
 ### Custom stuff ###
 ####################
 
+### Background processes ###
+
+# Notification daemon
+exec --no-startup-id dunst
+
+# Screen locker
+exec --no-startup-id screensaver
+
+# Bluetooth Manager tray icon/applet
+exec --no-startup-id blueman-applet
+
+### Keyboard bindings ###
+
 # Jump to window that rang a bell
 bindsym $mod+x [urgent=latest] focus
 
@@ -212,10 +225,4 @@ bindsym $mod+o exec --no-startup-id otpmenu
 # Backlight control
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 30 -time 250 -inc 4
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -fps 30 -time 250 -dec 4
-# Something something with rofi
 
-# Screen locker
-exec --no-startup-id screensaver
-
-# Bluetooth Manager tray icon/applet
-exec --no-startup-id blueman-applet
