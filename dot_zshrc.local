@@ -17,3 +17,12 @@ export PYENV_ROOT=$HOME/.local/opt/pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# Aliases
+alias view='vim -R'
+alias witch=which
+alias kc=kubectl
+
+alias crtinfo='openssl x509 -text -noout -in'
+alias csrinfo='openssl req -text -noout -in'
+alias rsainfo='openssl rsa -check -in'
+
