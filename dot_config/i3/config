@@ -215,7 +215,7 @@ exec --no-startup-id blueman-applet
 bindsym $mod+x [urgent=latest] focus
 
 # Lock screen with Mod+L
-bindsym $mod+l exec i3lock-fancy-rapid 7 4
+bindsym $mod+l exec loginctl lock-session
 
 # Rofi pass
 bindsym $mod+p exec --no-startup-id passmenu
@@ -223,6 +223,6 @@ bindsym $mod+p exec --no-startup-id passmenu
 bindsym $mod+o exec --no-startup-id otpmenu
 
 # Backlight control
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 30 -time 250 -inc 4
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -fps 30 -time 250 -dec 4
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 30 -time 250 -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -fps 30 -time 250 -dec 5
 
