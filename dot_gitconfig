@@ -1,5 +1,49 @@
 [user]
 	name = Alwyn Kik
 	email = alwyn@greater.nl
+
 [init]
 	defaultBranch = master
+
+[alias]
+    co = checkout
+    br = branch
+    cm = commit
+    ci = commit
+    st = status
+    s = status
+    cl = clone
+    d = diff
+    ds = diff --staged
+    dn = "! f () { git diff HEAD~${1-1}; }; f"
+    lg = log --graph --decorate --pretty=oneline --abbrev-commit
+    lga = log --all --graph --decorate --pretty=oneline --abbrev-commit
+    ls = log --pretty=format:"%C(yellow)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --numstat
+    plr = pull --rebase
+    wb = "!bash -c 'git fetch origin && git branch --remotes --contains "$1"' - "
+    fa = fetch --all
+
+[color]
+    ui = true
+    diff = auto
+    status = auto
+
+[push]
+    default = simple
+
+[core]
+	autocrlf = input
+	whitespace = -blank-at-eof
+
+[gc]
+	reflogExpire = 365
+
+[gpg]
+	program = gpg
+
+[diff "ansible-vault"]
+	textconv = ansible-vault view
+
+[pull]
+	ff = only
+
