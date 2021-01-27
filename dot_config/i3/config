@@ -216,6 +216,7 @@ workspace 2 output eDP-1
 workspace 3 output eDP-1
 workspace 4 output eDP-1
 
+# Find suitable properties using `xprop`
 assign [class="vivaldi-stable"] 4
 assign [class="Thunderbird"] 2
 assign [class="Slack"] 5
