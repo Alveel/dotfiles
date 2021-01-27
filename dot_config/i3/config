@@ -209,6 +209,21 @@ exec --no-startup-id screensaver
 # Bluetooth Manager tray icon/applet
 exec --no-startup-id blueman-applet
 
+### Workspace assignments ###
+
+workspace 1 output eDP-1
+workspace 2 output eDP-1
+workspace 3 output eDP-1
+workspace 4 output eDP-1
+
+assign [class="vivaldi-stable"] 4
+assign [class="Thunderbird"] 2
+assign [class="Slack"] 5
+
+# Sticky/clone Firefox picture-in-picture to every workspace.
+# https://i3wm.org/docs/userguide.html#_sticky_floating_windows
+for_window [window_role="PictureInPicture"] sticky enable
+
 ### Keyboard bindings ###
 
 # Jump to window that rang a bell
@@ -225,4 +240,8 @@ bindsym $mod+o exec --no-startup-id otpmenu
 # Backlight control
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 30 -time 250 -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -fps 30 -time 250 -dec 5
+
+# Screenshots
+bindsym Print exec --no-startup-id maim -s ~/img/ss/img-$(date +%Y-%m-%d-%H%M%S).png
+bindsym Control+Print exec --no-startup-id teiler --screenshot
 
