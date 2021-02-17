@@ -1,3 +1,8 @@
+# Environment
+export PATH=$PATH:$HOME/local/bin:$HOME/.config/rofi/bin
+export PASSWORD_STORE_DIR=$HOME/local/share/pass/main
+export XDG_DATA_HOME=$HOME/local/share
+
 # Start ssh-agent
 if [ -n "$DISPLAY" ];
 then
@@ -13,7 +18,7 @@ if [ -n "$DESKTOP_SESSION" ];then
 fi
 
 # Pyenv
-export PYENV_ROOT=$HOME/.local/opt/pyenv
+export PYENV_ROOT=$HOME/local/opt/pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
