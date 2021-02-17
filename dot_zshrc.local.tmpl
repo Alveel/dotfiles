@@ -1,3 +1,4 @@
+{{ if (eq .chezmoi.hostname "potatobee") }}
 # Start ssh-agent
 if [ -n "$DISPLAY" ];
 then
@@ -16,6 +17,7 @@ fi
 export PYENV_ROOT=$HOME/local/opt/pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+{{ end }}
 
 # Aliases
 alias view='vim -R'
