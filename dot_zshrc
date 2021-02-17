@@ -1,0 +1,36 @@
+# Environment
+export PATH=$PATH:$HOME/.config/rofi/bin
+export PASSWORD_STORE_DIR=$HOME/local/share/pass/main
+export XDG_DATA_HOME=$HOME/local/share
+
+# Load zgen
+source "$HOME/local/opt/zgen/zgen.zsh"
+
+# if the init scipt doesn't exist
+if ! zgen saved; then
+  echo "Creating a zgen save"
+
+  zgen prezto
+
+  # Prezto plugins
+  zgen prezto autosuggestions
+  zgen prezto completion
+  zgen prezto git
+  zgen prezto history-substring-search
+  zgen prezto history
+  zgen prezto syntax-highlighting
+
+  # Prezto settings
+  zgen prezto utility safe-ops 'no' # disable interactive rm/cp/mv/etc. by default
+
+  # theme
+  zgen prezto prompt theme 'agnoster'
+
+  # save all to init script
+  zgen save
+fi
+
+# User configuration that should be loaded after zgen
+alias l='ls -l'
+# NOTE: .zshrc.local will be loaded _before_ this file.
+
