@@ -1,8 +1,3 @@
-{{ if (eq .chezmoi.hostname "P-9602") }}
-# TODO: figure out why zsrch.local does get loaded on potatobee, but not P-9602
-source $HOME/.zshrc.local
-{{ end }}
-
 # Environment
 export PATH=$PATH:$HOME/.config/rofi/bin
 export PASSWORD_STORE_DIR=$HOME/local/share/pass/main
