@@ -1,9 +1,9 @@
 [user]
-	name = Alwyn Kik
-	email = alwyn@kik.pw
+  name = Alwyn Kik
+  email = alwyn@kik.pw
 
 [init]
-	defaultBranch = master
+  defaultBranch = master
 
 [alias]
   co = checkout
@@ -32,18 +32,18 @@
   default = simple
 
 [core]
-	autocrlf = input
-	whitespace = -blank-at-eof
+  autocrlf = input
+  whitespace = -blank-at-eof
 
 [gc]
-	reflogExpire = 365
+  reflogExpire = 365
 
 [gpg]
-	program = gpg
+  program = gpg
 
 [diff "ansible-vault"]
-	textconv = ansible-vault view
+  textconv = ansible-vault view
 
 [pull]
-	ff = only
+  ff = only
 
