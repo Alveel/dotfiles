@@ -28,3 +28,13 @@ alias crtinfo='openssl x509 -text -noout -in'
 alias csrinfo='openssl req -text -noout -in'
 alias rsainfo='openssl rsa -check -in'
 
+custom_shutdown() {
+  read "confirm?Do you really want to shutdown? "
+  if [[ "confirm" =~ ^[Yy]$ ]]
+  then
+    poweroff
+  fi
+}
+
+alias poweroff=custom_shutdown
+
