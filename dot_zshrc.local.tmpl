@@ -30,7 +30,7 @@ alias rsainfo='openssl rsa -check -in'
 
 custom_shutdown() {
   read "confirm?Do you really want to shutdown? "
-  if [[ "confirm" =~ ^[Yy]$ ]]
+  if [[ "$confirm" =~ ^[Yy]$ ]]
   then
     poweroff
   fi
