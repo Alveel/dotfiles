@@ -218,10 +218,12 @@ exec --no-startup-id blueman-applet
 #workspace 5 output eDP-1
 
 # Find suitable properties using `xprop`
+#assign [class="Thunderbird"] 2
+assign [class="org.remmina.Remmina"] 2
 assign [class="Vivaldi-stable"] 4
-assign [class="Thunderbird"] 2
 assign [class="Slack"] 5
 assign [class="Microsoft Teams - Preview"] 5
+assign [class="discord"] 7
 
 # Sticky/clone Firefox picture-in-picture to every workspace.
 # https://i3wm.org/docs/userguide.html#_sticky_floating_windows
