@@ -1,0 +1,11 @@
+#!/bin/bash
+
+pass_dir="${PASSWORD_STORE_DIR-~/.password-store}"
+
+mapfile -t otp_files < <(find "$pass_dir/otp" -type f -name '*gpg' -printf '%f\n')
+declare -a otp_entries
+for f in "${otp_files[@]}"; do
+    #otp_entries+="${f%".gpg"}"
+    echo "${f%".gpg"}"
+done | pass otp "otp/$(rofi -dmenu)" | xdotool type --file -
+

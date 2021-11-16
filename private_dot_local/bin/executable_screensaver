@@ -1,0 +1,38 @@
+#!/bin/bash
+# Screensaver using xss-lock
+# Based on example provided by `man 1 xss-lock`
+set -e
+
+dim_time="${dim_time-180}"
+lock_time="${lock_time-120}" # Lock after dim+lock
+min_brightness="${min_brightness-10}"
+fade_time="${fade_time-1200}"
+fade_steps="${fade_steps-30}"
+
+get_brightness() {
+    xbacklight -get
+}
+
+set_brightness() {
+    xbacklight -steps 1 -set "$1"
+}
+
+fade_brightness() {
+    xbacklight -time "$fade_time" -steps "$fade_steps" -set "$1"
+}
+
+dim_screen() {
+    trap 'exit 0' TERM INT
+    trap "set_brightness $(get_brightness); kill %%" EXIT
+    fade_brightness "$min_brightness"
+    sleep 10000d &
+    wait
+}
+
+if [ "$1" = "dim" ]; then
+    dim_screen
+else
+    xset s "$dim_time" "$lock_time"
+    xss-lock -n 'screensaver dim' i3lock-fancy-rapid 7 4
+fi
+
