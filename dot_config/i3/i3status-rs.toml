@@ -42,6 +42,12 @@ full_format = "{percentage}"
 [[block]]
 block = "backlight"
 
+[[block]]
+block = "hueshift"
+hue_shifter = "redshift"
+step = 100
+click_temp = 3500
+
 # MX Master
 [[block]]
 block = "bluetooth"
