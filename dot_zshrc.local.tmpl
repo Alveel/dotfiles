@@ -5,7 +5,7 @@ unset PAGER
 {{ if (eq .chezmoi.hostname "potatobee") -}}
 # Add xrandr scripts to PATH
 export PATH="$HOME/.screenlayout:$PATH"
-export GOPATH=""
+export GOPATH="/home/alwyn/go"
 
 # Start ssh-agent
 if [ -n "$DISPLAY" ];
