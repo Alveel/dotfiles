@@ -25,6 +25,7 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 " Add other plugins here.
 call minpac#add('rodjek/vim-puppet')
+call minpac#add('fatih/vim-go')
 
 
 " Load the plugins right now. (optional)
