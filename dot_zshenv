@@ -1,0 +1,2 @@
+export ZGEN_DIR=$HOME/.local/opt/zgen
+

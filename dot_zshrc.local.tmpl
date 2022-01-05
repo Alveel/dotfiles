@@ -60,6 +60,9 @@ export PATH="$PATH:$PYENV_ROOT/bin"
 eval "$(pyenv init --path)"
 eval "$(direnv hook zsh)"
 
+# The Fuck - https://github.com/nvbn/thefuck
+eval $(thefuck --alias)
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 {{- end }}
