@@ -3,7 +3,7 @@
   email = alwyn@kik.pw
 
 [init]
-  defaultBranch = master
+	defaultBranch = main
 
 [alias]
   co = checkout
