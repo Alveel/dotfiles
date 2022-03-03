@@ -57,7 +57,7 @@ custom_shutdown() {
 alias poweroff='custom_shutdown poweroff'
 alias reboot='custom_shutdown reboot'
 
-{{ if eq .chezmoi.hostname "refa" }}
+{{ if eq .chezmoi.hostname "refa" -}}
 export EDITOR=vim
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PATH:$PYENV_ROOT/bin"
