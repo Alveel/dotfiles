@@ -31,7 +31,7 @@ alias l='ls -l'
 # Unset certain git aliases
 unalias gdu
 
-{{- if chezmoi.hostname == "refa" }}
+{{- if .chezmoi.hostname == "refa" }}
 source $HOME/.zshrc.local
 {{- end }}
 
