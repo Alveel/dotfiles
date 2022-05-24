@@ -2,6 +2,28 @@
 # Most programs that I use have a sensible default.
 unset PAGER
 
+# Aliases
+alias view='vim -R'
+alias witch=which
+alias kc=kubectl
+alias ssh='TERM=xterm-256color ssh'
+alias sus='systemctl suspend'
+
+alias crtinfo='openssl x509 -text -noout -in'
+alias csrinfo='openssl req -text -noout -in'
+alias rsainfo='openssl rsa -check -in'
+
+custom_shutdown() {
+  read "confirm?Do you really want to ${1}? "
+  if [[ "$confirm" =~ ^[Yy]$ ]]
+  then
+    "$1"
+  fi
+}
+
+alias poweroff='custom_shutdown poweroff'
+alias reboot='custom_shutdown reboot'
+
 {{ if (eq .chezmoi.hostname "potatobee") -}}
 # Add scripts to PATH
 export PATH="$HOME/.screenlayout:$PATH"
@@ -37,29 +59,11 @@ eval $(thefuck --alias)
 # OpenShift completions
 source <(oc completion zsh | sed -e 's/kubectl/oc/g')
 
+# Minio
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/mcli mcli
+
 {{- end }}
-
-# Aliases
-alias view='vim -R'
-alias witch=which
-alias kc=kubectl
-alias ssh='TERM=xterm-256color ssh'
-alias sus='systemctl suspend'
-
-alias crtinfo='openssl x509 -text -noout -in'
-alias csrinfo='openssl req -text -noout -in'
-alias rsainfo='openssl rsa -check -in'
-
-custom_shutdown() {
-  read "confirm?Do you really want to ${1}? "
-  if [[ "$confirm" =~ ^[Yy]$ ]]
-  then
-    "$1"
-  fi
-}
-
-alias poweroff='custom_shutdown poweroff'
-alias reboot='custom_shutdown reboot'
 
 {{ if eq .chezmoi.hostname "refa" -}}
 export EDITOR=vim
