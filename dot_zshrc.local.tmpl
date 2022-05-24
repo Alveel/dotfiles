@@ -33,6 +33,10 @@ eval "$(rbenv init -)"
 
 # The Fuck - https://github.com/nvbn/thefuck
 eval $(thefuck --alias)
+
+# OpenShift completions
+source <(oc completion zsh | sed -e 's/kubectl/oc/g')
+
 {{- end }}
 
 # Aliases
