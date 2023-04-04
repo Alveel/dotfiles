@@ -1,6 +1,12 @@
 #!/bin/bash
 # Screensaver using xss-lock
 # Based on example provided by `man 1 xss-lock`
+# Dependencies:
+#   - acpilight (xbacklight replacement)
+#   - dunst (notification daemon)
+#   - i3lock-fancy-rapid (https://github.com/yvbbrjdr/i3lock-fancy-rapid)
+# TODO: locking pauses notifications, but unlocking doesn't resume them.
+
 set -e
 
 dim_time="${dim_time-180}"
@@ -10,29 +16,42 @@ fade_time="${fade_time-1200}"
 fade_steps="${fade_steps-30}"
 
 get_brightness() {
-    xbacklight -get
+  xbacklight -get
 }
 
 set_brightness() {
-    xbacklight -steps 1 -set "$1"
+  xbacklight -steps 1 -set "$1"
 }
 
 fade_brightness() {
-    xbacklight -time "$fade_time" -steps "$fade_steps" -set "$1"
+  xbacklight -time "$fade_time" -steps "$fade_steps" -set "$1"
+}
+
+lock_screen() {
+  dunstctl set-paused true
+  i3lock-fancy-rapid 7 4
 }
 
 dim_screen() {
-    trap 'exit 0' TERM INT
-    trap "set_brightness $(get_brightness); kill %%" EXIT
-    fade_brightness "$min_brightness"
-    sleep 10000d &
-    wait
+  trap 'exit 0' TERM INT
+  trap "set_brightness $(get_brightness); kill %%" EXIT
+  fade_brightness "$min_brightness"
+  sleep 10000d &
+  wait
 }
 
-if [ "$1" = "dim" ]; then
-    dim_screen
-else
+case "$1" in
+  dim)
+    dim_screen;;
+  lock)
+    lock_screen;;
+  *)
+    if [[ -n "$1" ]]; then
+      echo "Usage: screensaver [dim|lock]"
+      exit 1
+    fi
+
     xset s "$dim_time" "$lock_time"
-    xss-lock -n 'screensaver dim' i3lock-fancy-rapid 7 4
-fi
+    xss-lock -n 'screensaver dim' screensaver lock
+esac
 
