@@ -50,10 +50,10 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec rofi -modi drun,run -show drun
+bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 #bindsym $mod+j focus left
@@ -143,7 +143,7 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+c exec "i3 reload && killall -HUP xsettingsd"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -179,8 +179,10 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+        #output primary
+
         #status_command i3status -c ~/.config/i3/i3status.conf
-        font pango:Hack, Font Awesome 5 Free 11
+        font pango:Hack, Font Awesome 6 Free 11
         position bottom
         status_command i3status-rs ~/.config/i3/i3status-rs.toml
         # Shameless copy from i3status-rs examples`
@@ -189,7 +191,7 @@ bar {
                 statusline #dddddd
                 focused_workspace #0088CC #0088CC #ffffff
                 active_workspace #333333 #333333 #ffffff
-                inactive_workspace #333333 #333333 #888888
+                inactive_workspace #333333 #333333 #5c5c5c
                 urgent_workspace #2f343a #900000 #ffffff
         }
 }
@@ -209,6 +211,9 @@ exec --no-startup-id screensaver
 # Bluetooth Manager tray icon/applet
 exec --no-startup-id blueman-applet
 
+# Xsettings daemon for DPI settings
+exec_always --no-startup-id xsettingsd
+
 ### Workspace assignments ###
 
 #workspace 1 output eDP-1
@@ -218,16 +223,19 @@ exec --no-startup-id blueman-applet
 #workspace 5 output eDP-1
 
 # Find suitable properties using `xprop`
-#assign [class="Thunderbird"] 2
+assign [class="Thunderbird"] 2
 assign [class="org.remmina.Remmina"] 2
 assign [class="Vivaldi-stable"] 4
 assign [class="Slack"] 5
 assign [class="Microsoft Teams - Preview"] 5
-assign [class="discord"] 7
+assign [class="firefox" window_role="browser"] 4
+assign [class="ArmCord"] 3
 
 # Sticky/clone Firefox picture-in-picture to every workspace.
 # https://i3wm.org/docs/userguide.html#_sticky_floating_windows
 for_window [window_role="PictureInPicture"] sticky enable
+# Sticky Dunst for notify-send notifications to every workspace.
+for_window [class="Dunst"] sticky enable
 
 ### Keyboard bindings ###
 
