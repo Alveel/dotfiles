@@ -1,5 +1,5 @@
 {{- if (eq .chezmoi.hostname "potatobee") -}}
-export PATH=$PATH:$HOME/.local/bin:$HOME/.config/rofi/bin
+export PATH="$PATH:$HOME/.local/bin:$HOME/.config/rofi/bin:$HOME/.local/share/JetBrains/Toolbox/scripts"
 export XDG_DATA_HOME=$HOME/.local/share
 export PASSWORD_STORE_DIR=$XDG_DATA_HOME/pass/main
 {{ else }}
