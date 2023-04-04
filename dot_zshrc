@@ -1,0 +1,127 @@
+# less as a pager is suboptimal for various programs.
+# Most programs that I use have a sensible default.
+unset PAGER
+
+# Modify fpath
+fpath=(/home/alwyn/.local/share/zsh/site-functions $fpath)
+
+# Add scripts to PATH
+export GOPATH="/home/alwyn/go"
+export PATH="$GOPATH/bin:$HOME/.screenlayout:$PATH"
+
+# Start ssh-agent
+if [ -n "$DISPLAY" ];
+then
+    eval $(keychain --eval id_ed25519 id_rsa --agents ssh,gpg --quick --quiet)
+else
+    eval $(keychain --eval id_ed25519 id_rsa --agents ssh,gpg --quick --quiet --noask)
+fi
+
+# Gnome keyring
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
+
+# Pyenv
+export PYENV_ROOT=$HOME/.local/opt/pyenv
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init -)"
+
+# Fuck
+eval "$(thefuck --alias)"
+
+# zgenom
+source "$HOME/.local/opt/zgenom/zgenom.zsh"
+
+zgenom autoupdate
+
+# if the init scipt doesn't exist
+if ! zgenom saved; then
+  echo "Creating a zgenom save"
+
+  #zgenom compdef
+  zgenom prezto
+
+  # Prezto plugins
+  zgenom prezto autosuggestions
+  zgenom prezto git
+  zgenom prezto history-substring-search
+  zgenom prezto history
+  zgenom prezto syntax-highlighting
+
+  # Other completion suites
+  zgenom load zsh-users/zsh-completions
+  #zgenom load endaaman/lxd-completion-zsh
+
+  # Other plugins
+  # Show alias for command if typed out full
+  zgenom load djui/alias-tips
+  # readable directory listings with git status
+  #zgenom load supercrabtree/k
+  zgenom load unixorn/fzf-zsh-plugin
+  
+
+  # Prezto settings
+  zgenom prezto utility ls color 'yes'
+  zgenom prezto utility safe-ops 'no' # disable interactive rm/cp/mv/etc. by default
+
+  # theme
+  zgenom prezto prompt theme 'agnoster'
+
+  # save all to init script
+  zgenom save
+
+  # compile zsh files
+  zgenom compile "$HOME/.zshrc"
+fi
+
+# Custom functions
+custom_shutdown() {
+  read "confirm?Do you really want to ${1}? "
+  if [[ "$confirm" =~ ^[Yy]$ ]]
+  then
+    "$1"
+  fi
+}
+
+bidpi() {
+  mvi $HOME/.xsettingsd $HOME/.xsettingsd.hidpi
+  mvi $HOME/.xsettingsd.bak $HOME/.xsettingsd
+  /usr/bin/xrdb -merge $HOME/.Xresources
+}
+
+hidpi() {
+  mvi $HOME/.xsettingsd $HOME/.xsettingsd.bak
+  mvi $HOME/.xsettingsd.hidpi $HOME/.xsettingsd
+  /usr/bin/xrdb -merge $HOME/.Xresources.hidpi
+}
+
+# User configuration that should be loaded after zgenom
+# Aliases
+alias l='ls -l'
+alias view='vim -R'
+alias witch=which
+alias k=kubectl
+alias ssh='TERM=xterm-256color ssh'
+alias sus='systemctl suspend'
+alias cdt='cd $(mktemp -d)'
+alias ...='../..'
+
+alias crtinfo='openssl x509 -text -noout -in'
+alias csrinfo='openssl req -text -noout -in'
+alias rsainfo='openssl rsa -check -in'
+
+alias poweroff='custom_shutdown poweroff'
+alias reboot='custom_shutdown reboot'
+
+alias gbutt=gcloud
+
+# Unset certain git aliases
+unalias gdu
+unalias _
+unalias gm  # GraphicsMagick
+unalias gs  # GhostScript
+
