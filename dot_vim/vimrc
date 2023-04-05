@@ -38,6 +38,8 @@ call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('tiagofumo/vim-nerdtree-syntax-highlight')
 call minpac#add('PhilRunninger/nerdtree-buffer-ops')
 call minpac#add('pearofducks/ansible-vim')
+call minpac#add('lepture/vim-jinja')
+"call minpac#add('')
 
 " Load the plugins right now. (optional)
 packloadall
