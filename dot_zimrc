@@ -1,0 +1,9 @@
+zmodule completion
+zmodule zsh-users/zsh-syntax-highlighting
+zmodule zsh-users/zsh-autosuggestions
+zmodule zsh-users/zsh-history-substring-search
+
+zmodule sorin-ionescu/prezto --root modules/history --no-submodules
+zmodule djui/alias-tips
+zmodule unixorn/fzf-zsh-plugin
+
