@@ -30,6 +30,9 @@ eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(pyenv init -)"
 
+# Direnv
+eval "$(direnv hook zsh)"
+
 # Fuck
 eval "$(thefuck --alias)"
 
