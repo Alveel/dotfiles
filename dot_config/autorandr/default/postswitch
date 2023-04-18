@@ -1,0 +1,2 @@
+i3-msg '[workspace="^[1-9]"] move workspace to output eDP-1'
+

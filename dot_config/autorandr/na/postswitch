@@ -1,0 +1,3 @@
+i3-msg '[workspace="^(2|3|6|7|8)"] move workspace to output eDP-1'
+i3-msg '[workspace="^(1|4|5)"] move workspace to output DVI-I-2-1'
+
