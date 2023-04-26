@@ -60,7 +60,7 @@ disconnected_format = ""
 
 [[block]]
 block = "sound"
-format = " $icon {$volume.eng(w:2)|} $output_description.str(max_w:12)"
+format = " $icon {$volume.eng(w:2)|} $output_description.str(max_w:8)"
 max_vol = 100
 show_volume_when_muted = true
 
@@ -77,5 +77,5 @@ format = " $icon {$paused{Off}|On} {($notification_count.eng(w:1)) |} "
 [[block]]
 block = "time"
 interval = 1
-format = " $icon $timestamp.datetime(f:'%a %d/%m %T') "
+format = " $icon $timestamp.datetime(f:'%a %Y-%m-%d %T') "
 
