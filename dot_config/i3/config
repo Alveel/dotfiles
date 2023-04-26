@@ -203,27 +203,36 @@ bar {
 
 # Notification daemon
 exec --no-startup-id dunst
-
 # Screen locker
 exec --no-startup-id screensaver
-
 # Bluetooth Manager tray icon/applet
 exec --no-startup-id blueman-applet
-
 # Xsettings daemon for DPI settings
 exec_always --no-startup-id xsettingsd
-
 # pCloud
 exec --no-startup-id pcloud
+# NextCloud
+exec --no-startup-id nextcloud
+# Sound Switcher tray icon
+exec --no-startup-id indicator-sound-switcher
 
 ### Workspace assignments ###
 
-#workspace 1 output eDP-1
-#workspace 2 output eDP-1
-#workspace 3 output eDP-1
-#workspace 4 output eDP-1
-#workspace 5 output eDP-1
+set $mode_display Work Setting (h) Home, (n) NA, (g) Greater, (r) External Off
+mode "mode_display" {
+        bindsym h mode "display_thuis"; exec --no-startup-id xr-thuis.sh
+        bindsym g mode "display_greater"; exec --no-startup-id xr-greater.sh
+        bindsym n mode "display_na"; exec --no-startup-id xr-na.sh
+        bindsym r mode "display_reset"; exec --no-startup-id xr-reset.sh
 
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+Shift+y mode "mode_display"
+
+# Workspace application assignments
 # Find suitable properties using `xprop`
 assign [class="Thunderbird"] 2
 assign [class="org.remmina.Remmina"] 2
@@ -236,8 +245,13 @@ assign [class="ArmCord"] 3
 # Sticky/clone Firefox picture-in-picture to every workspace.
 # https://i3wm.org/docs/userguide.html#_sticky_floating_windows
 for_window [window_role="PictureInPicture"] sticky enable
-# Sticky Dunst for notify-send notifications to every workspace.
 for_window [class="Dunst"] sticky enable
+
+# Windows that should always float
+for_window [class="(?i)nm-connection-editor"] floating enable
+for_window [class="(?i)blueman-manager"] floating enable
+for_window [class="(?i)pavucontrol"] floating enable
+#for_window [class="(?i)"] floating enable
 
 ### Keyboard bindings ###
 
@@ -257,6 +271,6 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 30 -time 250 -i
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -fps 30 -time 250 -dec 5
 
 # Screenshots
-bindsym Print exec --no-startup-id maim -s ~/img/ss/img-$(date +%Y-%m-%d-%H%M%S).png
+bindsym Print exec --no-startup-id maim -s ~/media/img/ss/img-$(date +%Y-%m-%d-%H%M%S).png
 bindsym Control+Print exec --no-startup-id teiler --screenshot
 
