@@ -42,7 +42,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -54,6 +54,8 @@ bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+bindsym $mod+Shift+Return exec "rofi -show window"
 
 # change focus
 #bindsym $mod+j focus left
@@ -209,28 +211,18 @@ exec --no-startup-id screensaver
 exec --no-startup-id blueman-applet
 # Xsettings daemon for DPI settings
 exec_always --no-startup-id xsettingsd
+# Flameshot screenshot daemon
+exec --no-startup-id flameshot
 # pCloud
 exec --no-startup-id pcloud
 # NextCloud
 exec --no-startup-id nextcloud
 # Sound Switcher tray icon
 exec --no-startup-id indicator-sound-switcher
+# Yakuake drop-down terminal
+exec --no-startup-id yakuake
 
 ### Workspace assignments ###
-
-set $mode_display Work Setting (h) Home, (n) NA, (g) Greater, (r) External Off
-mode "mode_display" {
-        bindsym h mode "display_thuis"; exec --no-startup-id xr-thuis.sh
-        bindsym g mode "display_greater"; exec --no-startup-id xr-greater.sh
-        bindsym n mode "display_na"; exec --no-startup-id xr-na.sh
-        bindsym r mode "display_reset"; exec --no-startup-id xr-reset.sh
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-
-bindsym $mod+Shift+y mode "mode_display"
 
 # Workspace application assignments
 # Find suitable properties using `xprop`
@@ -252,6 +244,8 @@ for_window [class="(?i)nm-connection-editor"] floating enable
 for_window [class="(?i)blueman-manager"] floating enable
 for_window [class="(?i)pavucontrol"] floating enable
 #for_window [class="(?i)"] floating enable
+for_window [class="kooha"] floating enable sticky enable
+
 
 ### Keyboard bindings ###
 
@@ -271,6 +265,6 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 30 -time 250 -i
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -fps 30 -time 250 -dec 5
 
 # Screenshots
-bindsym Print exec --no-startup-id maim -s ~/media/img/ss/img-$(date +%Y-%m-%d-%H%M%S).png
 bindsym Control+Print exec --no-startup-id teiler --screenshot
+bindsym Print exec --no-startup-id flameshot gui
 
