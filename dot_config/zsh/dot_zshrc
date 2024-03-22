@@ -4,6 +4,7 @@ source "$ZDOTDIR/history.zsh"
 source "$ZDOTDIR/completions.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/keybinds.zsh"
+source "$ZDOTDIR/functions.zsh"
 
 autoload -Uz compinit
 compinit
@@ -16,29 +17,4 @@ source "$ZDOTDIR/tools.zsh"
 
 # Disable beep
 unsetopt BEEP
-
-####################
-# CUSTOM FUNCTIONS #
-####################
-
-# Interactive shutdown/reboot
-custom_shutdown() {
-  read "confirm?Do you really want to ${1}? "
-  if [[ "$confirm" =~ ^[Yy]$ ]]
-  then
-    "$1"
-  fi
-}
-
-# Default DPI
-dedpi() {
-  sed -i 's/155648/98304/' $HOME/.xsettingsd
-  /usr/bin/xrdb -merge $HOME/.Xresources
-}
-
-# HiDPI
-hidpi() {
-  sed -i 's/98304/155648/' $HOME/.xsettingsd
-  /usr/bin/xrdb -merge $HOME/.Xresources.hidpi
-}
 
