@@ -38,3 +38,16 @@ hidpi() {
   /usr/bin/xrdb -merge $HOME/.Xresources.hidpi
 }
 
+# OpenShift Login
+ocl() {
+  cluster="$1"
+  if [ -z "$cluster" ]; then
+    echo "You must specify a cluster as a parameter"
+    exit
+  fi
+  kubeconfig="${KUBECONFIG:-$HOME/.kube/config}"
+  oc login --server="https://api-ext.${cluster}.nationaalarchief.net:6443" -u akik
+  sed -i '/current-context: /d' "$kubeconfig"
+  kubie ctx "default/api-ext-${cluster}-nationaalarchief-net:6443/akik"
+}
+
