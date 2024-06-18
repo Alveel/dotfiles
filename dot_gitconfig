@@ -46,13 +46,14 @@
   program = gpg
 
 [diff "ansible-vault"]
-  textconv = ansible-vault view
+	textconv = ansible-vault view
 
 [pull]
   ff = only
 
 [credential]
 	helper = /usr/lib/git-core/git-credential-libsecret
+
 [color "status"]
 	branch = 6 normal bold
 	added = 10 normal
@@ -109,5 +110,23 @@
 	stash = normal
 	grafted = 1 0 bold
 	HEAD = 6 normal bold italic
+
 [diff]
 	colorMoved = zebra
+  external = difft
+	tool = difftastic
+
+[difftool]
+	prompt = false
+
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+  difftool = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
