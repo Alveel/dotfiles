@@ -8,6 +8,9 @@ eval "$(zoxide init zsh)"
 # Sheldon
 eval "$(sheldon source)"
 
+# Atuin shell history
+eval "$(atuin init zsh)"
+
 # Pyenv
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
