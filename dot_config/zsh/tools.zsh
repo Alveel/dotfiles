@@ -33,7 +33,3 @@ else
     eval $(keychain --eval id_ed25519 id_rsa --agents ssh,gpg --systemd --quick --quiet --noask)
 fi
 
-# MinIO client completion
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/mcli mcli
-
