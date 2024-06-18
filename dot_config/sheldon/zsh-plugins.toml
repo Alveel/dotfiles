@@ -18,16 +18,6 @@ source_zcolors = "source $HOME/.cache/zcolors"
 
 [plugins]
 
-[plugins.syntax-highlighting]
-github = "zsh-users/zsh-syntax-highlighting"
-
-[plugins.autosuggestions]
-github = "zsh-users/zsh-autosuggestions"
-
-[plugins.fzf]
-github = "unixorn/fzf-zsh-plugin"
-#apply = ["bin_path", "source"]
-
 [plugins.auto-notify]
 github = "MichaelAquilina/zsh-auto-notify"
 
@@ -42,4 +32,17 @@ github = 'djui/alias-tips'
 
 [plugins.up-dir]
 github = 'sgpthomas/zsh-up-dir'
+
+[plugins.fzf]
+github = "unixorn/fzf-zsh-plugin"
+#apply = ["bin_path", "source"]
+
+[plugins.fzf-tab]
+github = "Aloxaf/fzf-tab"
+
+[plugins.syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+
+[plugins.autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
 
