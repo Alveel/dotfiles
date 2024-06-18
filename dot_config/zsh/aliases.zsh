@@ -15,12 +15,15 @@ alias lao='eza -ld .?*'
 alias tree='eza -T'
 alias view='vim -R'
 alias witch=which
+
+# Network stuff
 alias ssh='TERM=xterm-256color ssh'
 alias nmc=nmcli
 alias nmup='nmcli con up'
 alias nmdown='nmcli con down'
+alias navpn='systemctl restart openvpn-client@NA.service'
 
-alias paste="curl -F 'f:1=<-' ix.io"
+alias paste="curl -F 'f:1=<-' https://0x0.st"
 
 # Ansible
 alias a=ansible
