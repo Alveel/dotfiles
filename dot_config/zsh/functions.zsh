@@ -43,7 +43,7 @@ ocl() {
   cluster="$1"
   if [ -z "$cluster" ]; then
     echo "You must specify a cluster as a parameter"
-    exit
+    return
   fi
   kubeconfig="${KUBECONFIG:-$HOME/.kube/config}"
   oc login --server="https://api-ext.${cluster}.nationaalarchief.net:6443" -u akik -p $(pass ass/na/ipa | head -n 1)
